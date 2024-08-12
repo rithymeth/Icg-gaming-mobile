@@ -1,22 +1,13 @@
 <template>
-  <div :class="['min-h-screen flex flex-col', isDarkMode ? 'dark' : '']">
-    <div class="flex flex-1">
-      <!-- Sidebar -->
-      <SideBar
-        :is-sidebar-collapsed="isSidebarCollapsed"
-        :is-dark-mode="isDarkMode"
-        @toggle-sidebar="toggleSidebar"
-      />
-
+  <div
+    :class="['min-h-screen flex flex-col', isDarkMode ? 'dark' : '']"
+    style="max-width: 420px; margin: 0 auto"
+  >
+    <div class="flex flex-1 flex-col">
       <!-- Main Content Area with Navbar -->
       <div class="flex-1 flex flex-col w-full">
         <NavBar :is-dark-mode="isDarkMode" @toggle-dark-mode="toggleDarkMode" />
-        <main
-          :class="[
-            'flex-grow p-4 transition-all duration-300',
-            isSidebarCollapsed ? 'md:ml-20' : 'md:ml-64',
-          ]"
-        >
+        <main class="flex-grow p-4 transition-all duration-300">
           <!-- Main Content Goes Here -->
           <router-view />
         </main>
@@ -29,13 +20,11 @@
 
 <script>
 import NavBar from "@/components/NavBar.vue";
-import SideBar from "@/components/SideBar.vue";
 // import FooterView from "@/components/FooterView.vue";
 
 export default {
   components: {
     NavBar,
-    SideBar,
     // FooterView,
   },
   data() {
@@ -73,13 +62,27 @@ body {
   color: #e0e0e0;
 }
 
-/* Adjustments for when the sidebar is collapsed */
-@media (min-width: 768px) {
-  .ml-20 {
-    margin-left: 5rem;
-  }
-  .ml-64 {
-    margin-left: 16rem;
-  }
+/* Ensure mobile-first layout */
+.flex-1 {
+  width: 100%;
+  flex-direction: column;
 }
+
+/* Sidebar Styles */
+.sidebar {
+  width: 100%;
+}
+
+/* Navbar Styles */
+.navbar {
+  width: 100%;
+}
+
+/* Enforce mobile size layout */
+.max-w-screen-mobile {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* Remove any large screen specific styles */
 </style>

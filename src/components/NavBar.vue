@@ -1,17 +1,18 @@
 <template>
   <nav
     class="bg-gray-900 text-white fixed top-0 left-0 right-0 z-50 shadow-md transition-colors duration-200"
+    style="max-width: 420px; margin: 0 auto;"
   >
     <div class="max-w-full mx-auto px-4 flex justify-between h-16 items-center">
       <!-- Logo -->
       <div class="flex items-center">
-        <button >
-          <img class="h-8 w-auto" src="@/assets/logo.png" alt="Logo" to="/"/>
+        <button>
+          <img class="h-8 w-auto" src="@/assets/logo.png" alt="Logo" to="/" />
         </button>
       </div>
 
       <!-- Mobile menu button -->
-      <div class="flex items-center sm:hidden">
+      <div class="flex items-center">
         <button
           @click="toggleMobileMenu"
           class="text-gray-400 hover:text-white focus:outline-none"
@@ -22,7 +23,7 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div v-if="isMobileMenuOpen" class="sm:hidden bg-gray-800">
+    <div v-if="isMobileMenuOpen" class="bg-gray-800">
       <router-link
         v-for="link in navLinks"
         :key="link.text"
